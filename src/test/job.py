@@ -59,3 +59,32 @@ def test_can_get_job_info_for_id():
     assert response.status_code == 200
     content = response.content
     json.loads(content)
+
+def test_can_get_info_for_result_folder():
+    response = config.get(f"/job/{helpers.get_user_jobid()}/result-folder-content")
+    assert response.status_code == 200
+    content = response.content
+    json.loads(content)
+
+def test_can_get_info_for_result_folder():
+    config.get(f"/job/{helpers.get_user_jobid()}/submit")
+    response = config.get(f"/job/{helpers.get_user_jobid()}/submit")
+    assert response.status_code == 404
+
+def cancel_route_exists():
+    response = config.get(f"/job/{helpers.get_user_jobid()}/cancel")
+    assert response.status_code == 200
+
+def pause_route_exists():
+    response = config.get(f"/job/{helpers.get_user_jobid()}/pause")
+    assert response.status_code == 200
+
+def resume_route_exists():
+    response = config.get(f"/job/{helpers.get_user_jobid()}/resume")
+    assert response.status_code == 200
+
+def can_access_logs_with_auth():
+    response = config.get(f"/job/{helpers.get_user_jobid()}/logs")
+    assert response.status_code == 200
+    content = response.content
+    json.loads(content)

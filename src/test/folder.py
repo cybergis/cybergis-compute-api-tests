@@ -10,6 +10,7 @@ import json
 import sys
 sys.path.insert(0, "./src")
 import config  # noqa
+import helpers #noqa
 
 
 def test_cant_access_folder_route_without_auth():
